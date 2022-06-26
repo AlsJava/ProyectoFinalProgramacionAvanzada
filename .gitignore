@@ -1,0 +1,40 @@
+# Elementos generados por los test
+uploads/
+
+# Project elements
+*.log
+*.lck
+/target/
+.designer/
+bin/
+/Data
+*.mv.db
+/data/
+webpack.generated.js
+node_modules/
+/local.properties
+
+# IDE
+.vscode
+.vertx/
+out/
+DataTest/
+*.trace.db
+Thumbs.db
+.DS_Store
+.gradle
+build/
+.idea
+*.iml
+*.ipr
+*.iws
+.project
+.settings
+.classpath
+*.cache
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
