@@ -32,7 +32,7 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetAddressResponse> get(@RequestParam Long id) {
+    public ResponseEntity<GetAddressResponse> get(@PathVariable Long id) {
         return ResponseEntity.ok(GetAddressResponse.builder()
                 .addresses(List.of(addressService.get(id)))
                 .build());

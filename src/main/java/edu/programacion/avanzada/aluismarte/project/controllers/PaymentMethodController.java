@@ -32,7 +32,7 @@ public class PaymentMethodController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetPaymentMethodResponse> get(@RequestParam Long id) {
+    public ResponseEntity<GetPaymentMethodResponse> get(@PathVariable Long id) {
         return ResponseEntity.ok(GetPaymentMethodResponse.builder()
                 .paymentMethods(List.of(paymentMethodService.get(id)))
                 .build());

@@ -33,7 +33,7 @@ public class CheckoutController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetCheckoutResponse> get(@RequestParam UUID id) {
+    public ResponseEntity<GetCheckoutResponse> get(@PathVariable UUID id) {
         return ResponseEntity.ok(GetCheckoutResponse.builder()
                 .checkouts(List.of(checkoutService.get(id)))
                 .build());
