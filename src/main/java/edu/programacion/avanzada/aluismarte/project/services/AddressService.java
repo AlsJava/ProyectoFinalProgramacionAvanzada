@@ -1,16 +1,17 @@
 package edu.programacion.avanzada.aluismarte.project.services;
 
-import edu.programacion.avanzada.aluismarte.project.domain.Address;
-import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
+import edu.programacion.avanzada.aluismarte.project.command.GetAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.GetAllAddressCommand;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.CreateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.DeleteAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.UpdateAddressRequest;
-import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
+import edu.programacion.avanzada.aluismarte.project.model.response.adress.CreateAddressResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.adress.DeleteAddressResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.adress.GetAddressResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.adress.UpdateAddressResponse;
+import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandBus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author aluis on 7/10/2022.
@@ -19,29 +20,25 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AddressService {
 
-    private final AddressRepository addressRepository;
+    private final CommandBus commandBus;
 
-    public List<AddressDTO> getAll() {
-        return addressRepository.findAll().stream().map(Address::toDTO).collect(Collectors.toList());
+    public GetAddressResponse getAll() {
+        return commandBus.sendCommand(GetAllAddressCommand.builder().build());
     }
 
-    public AddressDTO get(Long id) {
-        return addressRepository.findById(id).orElseThrow().toDTO();
+    public GetAddressResponse get(Long id) {
+        return commandBus.sendCommand(GetAddressCommand.builder().id(id).build());
     }
 
-    public AddressDTO create(CreateAddressRequest createAddressRequest) {
-        Address address = addressRepository.save(createAddressRequest.toPaymentMethod());
-        return address.toDTO();
+    public CreateAddressResponse create(CreateAddressRequest createAddressRequest) {
+        return commandBus.sendCommand(createAddressRequest.toCommand());
     }
 
-    public AddressDTO update(UpdateAddressRequest updateAddressRequest) {
-        Address address = addressRepository.findById(updateAddressRequest.getId()).orElseThrow();
-        address.applyChanges(updateAddressRequest);
-        addressRepository.save(address);
-        return address.toDTO();
+    public UpdateAddressResponse update(UpdateAddressRequest updateAddressRequest) {
+        return commandBus.sendCommand(updateAddressRequest.toCommand());
     }
 
-    public void delete(DeleteAddressRequest deleteAddressRequest) {
-        addressRepository.deleteById(deleteAddressRequest.getId());
+    public DeleteAddressResponse delete(DeleteAddressRequest deleteAddressRequest) {
+        return commandBus.sendCommand(deleteAddressRequest.toCommand());
     }
 }

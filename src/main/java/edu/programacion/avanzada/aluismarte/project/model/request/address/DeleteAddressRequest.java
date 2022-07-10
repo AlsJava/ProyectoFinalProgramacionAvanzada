@@ -1,5 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.address;
 
+import edu.programacion.avanzada.aluismarte.project.command.DeleteAddressCommand;
 import lombok.*;
 
 /**
@@ -13,4 +14,10 @@ import lombok.*;
 public class DeleteAddressRequest {
 
     private Long id;
+
+    public DeleteAddressCommand toCommand() {
+        return DeleteAddressCommand.builder()
+                .id(id)
+                .build();
+    }
 }

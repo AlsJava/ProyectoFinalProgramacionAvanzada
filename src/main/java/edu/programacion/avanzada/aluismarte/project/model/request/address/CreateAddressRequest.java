@@ -1,6 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.address;
 
-import edu.programacion.avanzada.aluismarte.project.domain.Address;
+import edu.programacion.avanzada.aluismarte.project.command.CreateAddressCommand;
 import lombok.*;
 
 /**
@@ -16,8 +16,8 @@ public class CreateAddressRequest {
     private String name;
     private String description;
 
-    public Address toPaymentMethod() {
-        return Address.builder()
+    public CreateAddressCommand toCommand() {
+        return CreateAddressCommand.builder()
                 .name(name)
                 .description(description)
                 .build();

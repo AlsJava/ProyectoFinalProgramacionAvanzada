@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.command;
+package edu.programacion.avanzada.aluismarte.project.patterns.command;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

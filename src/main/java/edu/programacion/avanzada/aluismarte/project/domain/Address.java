@@ -1,13 +1,13 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
-import edu.programacion.avanzada.aluismarte.project.model.request.address.UpdateAddressRequest;
 import lombok.*;
 
 import javax.persistence.*;
 
 /**
  * INSERT INTO ADDRESSES(id, name, description) VALUES (1, 'Demo Address', '')
+ * INSERT INTO ADDRESSES(id, name, description) VALUES (2, 'Demo Address 2', '')
  *
  * @author aluis on 7/10/2022.
  */
@@ -36,10 +36,6 @@ public class Address {
                 .name(name)
                 .description(description)
                 .build();
-    }
-
-    public void applyChanges(UpdateAddressRequest updateAddressRequest) {
-        description = updateAddressRequest.getDescription();
     }
 
 }

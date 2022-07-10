@@ -1,5 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.address;
 
+import edu.programacion.avanzada.aluismarte.project.command.UpdateAddressCommand;
 import lombok.*;
 
 /**
@@ -14,5 +15,12 @@ public class UpdateAddressRequest {
 
     private Long id;
     private String description;
+
+    public UpdateAddressCommand toCommand() {
+        return UpdateAddressCommand.builder()
+                .id(id)
+                .description(description)
+                .build();
+    }
 
 }
