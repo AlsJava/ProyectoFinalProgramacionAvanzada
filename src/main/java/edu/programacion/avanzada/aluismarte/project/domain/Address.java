@@ -1,5 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
+import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
+import edu.programacion.avanzada.aluismarte.project.model.request.address.UpdateAddressRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,5 +28,16 @@ public class Address {
     @Column
     private String description;
 
+    public AddressDTO toDTO() {
+        return AddressDTO.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .build();
+    }
+
+    public void applyChanges(UpdateAddressRequest updateAddressRequest) {
+        description = updateAddressRequest.getDescription();
+    }
 
 }

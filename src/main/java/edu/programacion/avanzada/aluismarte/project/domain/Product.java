@@ -1,7 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
-import edu.programacion.avanzada.aluismarte.project.model.request.UpdateProductRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.product.UpdateProductRequest;
 import lombok.*;
 
 import javax.persistence.*;

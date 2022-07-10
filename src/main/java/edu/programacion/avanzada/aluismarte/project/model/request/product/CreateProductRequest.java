@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.model.request;
+package edu.programacion.avanzada.aluismarte.project.model.request.product;
 
 import edu.programacion.avanzada.aluismarte.project.domain.Product;
 import lombok.*;

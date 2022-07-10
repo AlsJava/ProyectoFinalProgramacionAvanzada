@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.model.request;
+package edu.programacion.avanzada.aluismarte.project.model.request.payment;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-public class DeleteProductRequest {
+public class DeletePaymentMethodRequest {
 
     private Long id;
 }

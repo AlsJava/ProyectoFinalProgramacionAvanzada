@@ -1,5 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
+import edu.programacion.avanzada.aluismarte.project.model.dto.PaymentMethodDTO;
+import edu.programacion.avanzada.aluismarte.project.model.request.payment.UpdatePaymentMethodRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,4 +27,16 @@ public class PaymentMethod {
 
     @Column
     private String description;
+
+    public PaymentMethodDTO toDTO() {
+        return PaymentMethodDTO.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .build();
+    }
+
+    public void applyChanges(UpdatePaymentMethodRequest updatePaymentMethodRequest) {
+        description = updatePaymentMethodRequest.getDescription();
+    }
 }

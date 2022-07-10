@@ -2,9 +2,9 @@ package edu.programacion.avanzada.aluismarte.project.services;
 
 import edu.programacion.avanzada.aluismarte.project.domain.Product;
 import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
-import edu.programacion.avanzada.aluismarte.project.model.request.CreateProductRequest;
-import edu.programacion.avanzada.aluismarte.project.model.request.DeleteProductRequest;
-import edu.programacion.avanzada.aluismarte.project.model.request.UpdateProductRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.product.CreateProductRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.product.DeleteProductRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.product.UpdateProductRequest;
 import edu.programacion.avanzada.aluismarte.project.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

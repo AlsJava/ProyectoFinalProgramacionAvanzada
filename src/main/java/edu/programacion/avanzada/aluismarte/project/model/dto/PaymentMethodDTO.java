@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.model.request;
+package edu.programacion.avanzada.aluismarte.project.model.dto;
 
 import lombok.*;
 
@@ -12,11 +12,9 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @Setter
-public class UpdateProductRequest {
+public class PaymentMethodDTO {
 
     private Long id;
+    private String name;
     private String description;
-    private long availableQuantity;
-    private BigDecimal price;
-
 }
