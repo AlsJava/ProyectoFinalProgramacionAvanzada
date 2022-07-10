@@ -17,4 +17,6 @@ public class CheckoutAddProductRequest {
     private UUID id;
 
     private Long product;
+
+    private Long quantity;
 }

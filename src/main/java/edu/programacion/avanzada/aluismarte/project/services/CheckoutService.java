@@ -5,13 +5,11 @@ import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutAddProductRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdatePaymentMethodRequest;
-import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
-import edu.programacion.avanzada.aluismarte.project.repositories.CheckoutRepository;
-import edu.programacion.avanzada.aluismarte.project.repositories.PaymentMethodRepository;
-import edu.programacion.avanzada.aluismarte.project.repositories.ProductRepository;
+import edu.programacion.avanzada.aluismarte.project.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +26,7 @@ public class CheckoutService {
     private final PaymentMethodRepository paymentMethodRepository;
     private final AddressRepository addressRepository;
     private final ProductRepository productRepository;
+    private final CheckoutProductRepository checkoutProductRepository;
 
     public List<CheckoutDTO> getAll() {
         return checkoutRepository.findAll().stream().map(Checkout::toDTO).collect(Collectors.toList());
@@ -53,17 +52,42 @@ public class CheckoutService {
         return checkout.toDTO();
     }
 
+    @Transactional
     public CheckoutDTO addProducts(CheckoutAddProductRequest checkoutAddProductRequest) {
         Checkout checkout = checkoutRepository.findById(checkoutAddProductRequest.getId()).orElseThrow();
         Product product = productRepository.findById(checkoutAddProductRequest.getProduct()).orElseThrow();
+        if (checkoutAddProductRequest.getQuantity() > product.getAvailableQuantity()) {
+            throw new RuntimeException("Available product if less than you need");
+        }
         List<CheckoutProduct> productsToBuy = checkout.getProductsToBuy();
         if (productsToBuy == null) {
             productsToBuy = new ArrayList<>();
         }
-        // TODO si el producto no existe lo agrego
-        // TODO si el producto existe, lo actualizo
+        CheckoutProduct checkoutProduct = findProductInCheckout(productsToBuy, product.getId());
+        if (checkoutProduct == null) {
+            checkoutProduct = CheckoutProduct.builder()
+                    .product(product)
+                    .quantity(checkoutAddProductRequest.getQuantity())
+                    .build();
+            checkoutProductRepository.save(checkoutProduct);
+            productsToBuy.add(checkoutProduct);
+        } else {
+            checkoutProduct.setQuantity(checkoutProduct.getQuantity() + checkoutAddProductRequest.getQuantity());
+            checkoutProductRepository.save(checkoutProduct);
+        }
+        product.setAvailableQuantity(product.getAvailableQuantity() - checkoutAddProductRequest.getQuantity());
+        productRepository.save(product);
         checkout.setProductsToBuy(productsToBuy);
         checkoutRepository.save(checkout);
         return checkout.toDTO();
+    }
+
+    private CheckoutProduct findProductInCheckout(List<CheckoutProduct> productsToBuy, Long productId) {
+        for (CheckoutProduct checkoutProduct : productsToBuy) {
+            if (checkoutProduct.getProduct().getId().equals(productId)) {
+                return checkoutProduct;
+            }
+        }
+        return null;
     }
 }
