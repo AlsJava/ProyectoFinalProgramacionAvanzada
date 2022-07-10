@@ -14,7 +14,8 @@ import lombok.*;
 @ToString
 public class GetAllAddressCommand extends Command<GetAddressResponse> {
 
-    private long pageSize;
-    private long page;
+    private int pageSize;
+    private int page;
+    private String name;
 
 }

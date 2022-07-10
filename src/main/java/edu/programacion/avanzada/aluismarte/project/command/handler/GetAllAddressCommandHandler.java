@@ -9,6 +9,8 @@ import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHand
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,7 +30,11 @@ public class GetAllAddressCommandHandler implements CommandHandler<GetAddressRes
     @Override
     public GetAddressResponse handle(GetAllAddressCommand getAllAddressCommand) {
         log.info("Get Addresses {}", getAllAddressCommand.toString());
-        List<AddressDTO> addressDTOS = addressRepository.findAll().stream().map(Address::toDTO).collect(Collectors.toList());
+        List<AddressDTO> addressDTOS = addressRepository.findAll(
+                PageRequest.of(getAllAddressCommand.getPage(), getAllAddressCommand.getPageSize()))
+                .stream()
+                .map(Address::toDTO)
+                .collect(Collectors.toList());
         return GetAddressResponse.builder()
                 .addresses(addressDTOS)
                 .build();

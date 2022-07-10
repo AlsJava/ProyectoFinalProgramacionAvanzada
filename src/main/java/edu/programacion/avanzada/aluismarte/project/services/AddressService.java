@@ -22,8 +22,8 @@ public class AddressService {
 
     private final CommandBus commandBus;
 
-    public GetAddressResponse getAll(Long pageSize, Long page) {
-        return commandBus.sendCommand(GetAllAddressCommand.builder().pageSize(pageSize).page(page).build());
+    public GetAddressResponse getAll(Integer pageSize, Integer page, String name) {
+        return commandBus.sendCommand(GetAllAddressCommand.builder().pageSize(pageSize).page(page).name(name).build());
     }
 
     public GetAddressResponse get(Long id) {
