@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.ProyectoFinal;
+package edu.programacion.avanzada.aluismarte.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

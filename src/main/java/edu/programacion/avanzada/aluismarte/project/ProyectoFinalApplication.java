@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.ProyectoFinal;
+package edu.programacion.avanzada.aluismarte.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
