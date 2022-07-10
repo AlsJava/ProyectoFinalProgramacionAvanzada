@@ -1,7 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.response.payment;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.PaymentMethodDTO;
-import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
 import lombok.*;
 
 /**

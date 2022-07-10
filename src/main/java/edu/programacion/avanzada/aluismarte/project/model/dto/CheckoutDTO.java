@@ -2,8 +2,6 @@ package edu.programacion.avanzada.aluismarte.project.model.dto;
 
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 

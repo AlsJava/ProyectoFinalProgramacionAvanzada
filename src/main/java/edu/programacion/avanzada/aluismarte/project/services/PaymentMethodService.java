@@ -25,6 +25,10 @@ public class PaymentMethodService {
         return paymentMethodRepository.findAll().stream().map(PaymentMethod::toDTO).collect(Collectors.toList());
     }
 
+    public PaymentMethodDTO get(Long id) {
+        return paymentMethodRepository.findById(id).orElseThrow().toDTO();
+    }
+
     public PaymentMethodDTO create(CreatePaymentMethodRequest createPaymentMethodRequest) {
         PaymentMethod paymentMethod = paymentMethodRepository.save(createPaymentMethodRequest.toPaymentMethod());
         return paymentMethod.toDTO();

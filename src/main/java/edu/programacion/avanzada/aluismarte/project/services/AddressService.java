@@ -25,6 +25,10 @@ public class AddressService {
         return addressRepository.findAll().stream().map(Address::toDTO).collect(Collectors.toList());
     }
 
+    public AddressDTO get(Long id) {
+        return addressRepository.findById(id).orElseThrow().toDTO();
+    }
+
     public AddressDTO create(CreateAddressRequest createAddressRequest) {
         Address address = addressRepository.save(createAddressRequest.toPaymentMethod());
         return address.toDTO();

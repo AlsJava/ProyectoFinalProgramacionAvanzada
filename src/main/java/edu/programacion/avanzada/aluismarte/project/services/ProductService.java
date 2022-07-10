@@ -25,6 +25,10 @@ public class ProductService {
         return productRepository.findAll().stream().map(Product::toDTO).collect(Collectors.toList());
     }
 
+    public ProductDTO get(Long id) {
+        return productRepository.findById(id).orElseThrow().toDTO();
+    }
+
     public ProductDTO create(CreateProductRequest createProductRequest) {
         Product product = productRepository.save(createProductRequest.toProduct());
         return product.toDTO();

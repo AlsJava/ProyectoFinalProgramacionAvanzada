@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author aluis on 7/10/2022.
  */
@@ -26,6 +28,13 @@ public class PaymentMethodController {
     public ResponseEntity<GetPaymentMethodResponse> get() {
         return ResponseEntity.ok(GetPaymentMethodResponse.builder()
                 .paymentMethods(paymentMethodService.getAll())
+                .build());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GetPaymentMethodResponse> get(@RequestParam Long id) {
+        return ResponseEntity.ok(GetPaymentMethodResponse.builder()
+                .paymentMethods(List.of(paymentMethodService.get(id)))
                 .build());
     }
 

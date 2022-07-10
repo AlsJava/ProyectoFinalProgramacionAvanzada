@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author aluis on 7/10/2022.
  */
@@ -26,6 +28,13 @@ public class ProductController {
     public ResponseEntity<GetProductResponse> get() {
         return ResponseEntity.ok(GetProductResponse.builder()
                 .products(productService.getAll())
+                .build());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GetProductResponse> get(@RequestParam Long id) {
+        return ResponseEntity.ok(GetProductResponse.builder()
+                .products(List.of(productService.get(id)))
                 .build());
     }
 

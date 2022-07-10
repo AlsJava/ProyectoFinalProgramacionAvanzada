@@ -1,7 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.response.checkout;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
-import edu.programacion.avanzada.aluismarte.project.model.dto.PaymentMethodDTO;
 import lombok.*;
 
 import java.util.List;

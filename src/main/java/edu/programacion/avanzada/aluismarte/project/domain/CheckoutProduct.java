@@ -1,6 +1,5 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
-import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
 import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutProductDTO;
 import lombok.*;
 
