@@ -25,7 +25,7 @@ public class AddressController {
     @GetMapping
     public ResponseEntity<GetAddressResponse> getAll(@RequestParam(required = false, defaultValue = "10") Integer pageSize,
                                                      @RequestParam(required = false, defaultValue = "0") Integer page,
-                                                     @RequestParam(required = false) String name) {
+                                                     @RequestParam(required = false, defaultValue = "") String name) {
         return ResponseEntity.ok(addressService.getAll(pageSize, page, name));
     }
 

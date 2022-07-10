@@ -25,7 +25,7 @@ public class GetAddressCommandHandler implements CommandHandler<GetAddressRespon
 
     @Override
     public GetAddressResponse handle(GetAddressCommand getAddressCommand) {
-        log.info("Get Address {}", getAddressCommand.getId());
+        log.debug("Get Address {}", getAddressCommand.getId());
         AddressDTO addressDTO = addressRepository.findById(getAddressCommand.getId()).orElseThrow().toDTO();
         return GetAddressResponse.builder()
                 .addresses(List.of(addressDTO))
