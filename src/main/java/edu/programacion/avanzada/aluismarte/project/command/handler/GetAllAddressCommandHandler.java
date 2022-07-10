@@ -8,6 +8,7 @@ import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEven
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,12 +20,14 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 @CommandEvent(command = GetAllAddressCommand.class)
+@Slf4j
 public class GetAllAddressCommandHandler implements CommandHandler<GetAddressResponse, GetAllAddressCommand> {
 
     private final AddressRepository addressRepository;
 
     @Override
     public GetAddressResponse handle(GetAllAddressCommand getAllAddressCommand) {
+        log.info("Get Addresses {}", getAllAddressCommand.toString());
         List<AddressDTO> addressDTOS = addressRepository.findAll().stream().map(Address::toDTO).collect(Collectors.toList());
         return GetAddressResponse.builder()
                 .addresses(addressDTOS)

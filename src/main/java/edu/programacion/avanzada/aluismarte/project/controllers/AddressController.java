@@ -23,8 +23,9 @@ public class AddressController {
     private final AddressService addressService;
 
     @GetMapping
-    public ResponseEntity<GetAddressResponse> get() {
-        return ResponseEntity.ok(addressService.getAll());
+    public ResponseEntity<GetAddressResponse> getAll(@RequestParam(required = false, defaultValue = "10") Long pageSize,
+                                                     @RequestParam(required = false, defaultValue = "1") Long page) {
+        return ResponseEntity.ok(addressService.getAll(pageSize, page));
     }
 
     @GetMapping("/{id}")

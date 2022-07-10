@@ -7,6 +7,7 @@ import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEven
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @CommandEvent(command = UpdateAddressCommand.class)
+@Slf4j
 public class UpdateAddressCommandHandler implements CommandHandler<UpdateAddressResponse, UpdateAddressCommand> {
 
     private final AddressRepository addressRepository;
@@ -24,6 +26,7 @@ public class UpdateAddressCommandHandler implements CommandHandler<UpdateAddress
         Address address = addressRepository.findById(updateAddressCommand.getId()).orElseThrow();
         address.setDescription(updateAddressCommand.getDescription());
         addressRepository.save(address);
+        log.info("Address {} updated", updateAddressCommand.getId());
         return UpdateAddressResponse.builder().address(address.toDTO()).build();
     }
 }

@@ -2,10 +2,7 @@ package edu.programacion.avanzada.aluismarte.project.command;
 
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.GetAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.Command;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author aluis on 7/10/2022.
@@ -14,6 +11,10 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
+@ToString
 public class GetAllAddressCommand extends Command<GetAddressResponse> {
+
+    private long pageSize;
+    private long page;
 
 }

@@ -7,6 +7,7 @@ import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEven
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @CommandEvent(command = CreateAddressCommand.class)
+@Slf4j
 public class CreateAddressCommandHandler implements CommandHandler<CreateAddressResponse, CreateAddressCommand> {
 
     private final AddressRepository addressRepository;
@@ -22,6 +24,7 @@ public class CreateAddressCommandHandler implements CommandHandler<CreateAddress
     @Override
     public CreateAddressResponse handle(CreateAddressCommand createAddressCommand) {
         Address address = addressRepository.save(createAddressCommand.toPaymentMethod());
+        log.info("Address {} created", address.getId());
         return CreateAddressResponse.builder()
                 .address(address.toDTO())
                 .build();
