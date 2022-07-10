@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
+ *
+ * INSERT INTO PRODUCTS(id, name, description, AVAILABLE_QUANTITY, PRICE ) VALUES (1, 'Uvas', '', 500, 250)
+ *
  * @author aluis on 7/10/2022.
  */
 @AllArgsConstructor

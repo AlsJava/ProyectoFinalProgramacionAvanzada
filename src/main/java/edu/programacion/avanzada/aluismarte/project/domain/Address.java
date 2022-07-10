@@ -7,6 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
+ *
+ * INSERT INTO ADDRESSES(id, name, description) VALUES (1, 'Demo Address', '')
+ *
  * @author aluis on 7/10/2022.
  */
 @AllArgsConstructor
