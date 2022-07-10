@@ -41,7 +41,7 @@ class GetAllAddressCommandHandlerTest {
                 .pageSize(10)
                 .page(0)
                 .build();
-        Mockito.when(addressRepository.findById(ArgumentMatchers.eq(1L))).thenReturn(Optional.of(addressMock));
+        Mockito.when(addressRepository.findAllByNameContainingIgnoreCase(ArgumentMatchers.anyString(), ArgumentMatchers.any())).thenReturn(List.of(addressMock));
         GetAllAddressCommandHandler getAllAddressCommandHandler = new GetAllAddressCommandHandler(addressRepository);
         GetAddressResponse getAddressResponse = getAllAddressCommandHandler.handle(getAllAddressCommand);
         assertNotNull(getAddressResponse);

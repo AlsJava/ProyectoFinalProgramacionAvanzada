@@ -37,7 +37,7 @@ class GetAddressCommandHandlerTest {
         addressMock.setName("Hello");
         addressMock.setDescription("");
         GetAddressCommand getAddressCommand = GetAddressCommand.builder().id(addressMock.getId()).build();
-        Mockito.when(addressRepository.findAllByNameContainingIgnoreCase(ArgumentMatchers.anyString(), ArgumentMatchers.any())).thenReturn(List.of(addressMock));
+        Mockito.when(addressRepository.findById(ArgumentMatchers.eq(1L))).thenReturn(Optional.of(addressMock));
         GetAddressCommandHandler getAddressCommandHandler = new GetAddressCommandHandler(addressRepository);
         GetAddressResponse getAddressResponse = getAddressCommandHandler.handle(getAddressCommand);
         assertNotNull(getAddressResponse);
