@@ -26,7 +26,7 @@ class DeleteAddressCommandHandlerTest {
     }
 
     @Test
-    void createAddressTest() {
+    void deleteAddressTest() {
         DeleteAddressCommand deleteAddressCommand = DeleteAddressCommand.builder()
                 .id(1L)
                 .build();
