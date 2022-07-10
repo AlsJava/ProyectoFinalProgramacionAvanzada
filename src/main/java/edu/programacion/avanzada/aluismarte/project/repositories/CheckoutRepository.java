@@ -10,5 +10,5 @@ import java.util.UUID;
  * @author aluis on 7/10/2022.
  */
 @Repository
-public interface CheckoutRepository extends JpaRepository<UUID, Checkout> {
+public interface CheckoutRepository extends JpaRepository<Checkout, UUID> {
 }

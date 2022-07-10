@@ -1,5 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
+import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
+import edu.programacion.avanzada.aluismarte.project.model.request.UpdateProductRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,5 +34,21 @@ public class Product {
 
     @Column
     private BigDecimal price;
+
+    public ProductDTO toDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .availableQuantity(availableQuantity)
+                .price(price)
+                .build();
+    }
+
+    public void applyChanges(UpdateProductRequest updateProductRequest) {
+        description = updateProductRequest.getDescription();
+        availableQuantity = updateProductRequest.getAvailableQuantity();
+        price = updateProductRequest.getPrice();
+    }
 
 }
