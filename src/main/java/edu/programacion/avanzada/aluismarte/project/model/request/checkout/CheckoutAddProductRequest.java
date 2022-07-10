@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-public class AddProductCheckoutRequest {
+public class CheckoutAddProductRequest {
 
     private UUID id;
 

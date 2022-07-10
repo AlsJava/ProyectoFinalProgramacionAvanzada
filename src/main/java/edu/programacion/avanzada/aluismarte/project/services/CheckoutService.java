@@ -2,7 +2,7 @@ package edu.programacion.avanzada.aluismarte.project.services;
 
 import edu.programacion.avanzada.aluismarte.project.domain.*;
 import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
-import edu.programacion.avanzada.aluismarte.project.model.request.checkout.AddProductCheckoutRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutAddProductRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdatePaymentMethodRequest;
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
@@ -53,9 +53,9 @@ public class CheckoutService {
         return checkout.toDTO();
     }
 
-    public CheckoutDTO addProducts(AddProductCheckoutRequest addProductCheckoutRequest) {
-        Checkout checkout = checkoutRepository.findById(addProductCheckoutRequest.getId()).orElseThrow();
-        Product product = productRepository.findById(addProductCheckoutRequest.getProduct()).orElseThrow();
+    public CheckoutDTO addProducts(CheckoutAddProductRequest checkoutAddProductRequest) {
+        Checkout checkout = checkoutRepository.findById(checkoutAddProductRequest.getId()).orElseThrow();
+        Product product = productRepository.findById(checkoutAddProductRequest.getProduct()).orElseThrow();
         List<CheckoutProduct> productsToBuy = checkout.getProductsToBuy();
         if (productsToBuy == null) {
             productsToBuy = new ArrayList<>();
