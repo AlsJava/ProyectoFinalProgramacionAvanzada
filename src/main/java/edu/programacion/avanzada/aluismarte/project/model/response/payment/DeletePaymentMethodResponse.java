@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.model.response;
+package edu.programacion.avanzada.aluismarte.project.model.response.payment;
 
 import lombok.*;
 
@@ -10,6 +10,6 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-public class DeleteProductResponse {
+public class DeletePaymentMethodResponse {
 
 }

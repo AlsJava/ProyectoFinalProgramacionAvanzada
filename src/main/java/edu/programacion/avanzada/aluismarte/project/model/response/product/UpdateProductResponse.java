@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.model.response;
+package edu.programacion.avanzada.aluismarte.project.model.response.product;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
 import lombok.*;

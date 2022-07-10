@@ -1,9 +1,7 @@
-package edu.programacion.avanzada.aluismarte.project.model.response;
+package edu.programacion.avanzada.aluismarte.project.model.response.product;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
 import lombok.*;
-
-import java.util.List;
 
 /**
  * @author aluis on 7/10/2022.
@@ -13,7 +11,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class GetProductResponse {
+public class CreateProductResponse {
 
-    private List<ProductDTO> products;
+    private ProductDTO product;
 }
