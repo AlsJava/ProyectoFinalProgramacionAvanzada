@@ -4,6 +4,7 @@ import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * INSERT INTO ADDRESSES(id, name, description) VALUES (1, 'Demo Address', '')
@@ -24,7 +25,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @NotBlank
+    @Column(nullable = false)
     private String name;
 
     @Column

@@ -23,7 +23,7 @@ public class CreateAddressCommandHandler implements CommandHandler<CreateAddress
 
     @Override
     public CreateAddressResponse handle(CreateAddressCommand createAddressCommand) {
-        Address address = addressRepository.save(createAddressCommand.toPaymentMethod());
+        Address address = addressRepository.save(createAddressCommand.toAddress());
         log.info("Address {} created", address.getId());
         return CreateAddressResponse.builder()
                 .address(address.toDTO())

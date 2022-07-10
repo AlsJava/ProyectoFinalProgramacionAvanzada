@@ -18,7 +18,7 @@ public class CreateAddressCommand extends Command<CreateAddressResponse> {
     private String name;
     private String description;
 
-    public Address toPaymentMethod() {
+    public Address toAddress() {
         return Address.builder()
                 .name(name)
                 .description(description)
