@@ -9,7 +9,6 @@ import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHand
 import edu.programacion.avanzada.aluismarte.project.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,9 +28,7 @@ public class GetAllProductCommandHandler implements CommandHandler<GetProductRes
     @Override
     public GetProductResponse handle(GetAllProductCommand getAllProductCommand) {
         log.debug("Get Products {}", getAllProductCommand.toString());
-        List<ProductDTO> productDTOS = productRepository.findAllByNameContainingIgnoreCase(
-                        getAllProductCommand.getName(),
-                        PageRequest.of(getAllProductCommand.getPage(), getAllProductCommand.getPageSize()))
+        List<ProductDTO> productDTOS = productRepository.findAll()
                 .stream()
                 .map(Product::toDTO)
                 .collect(Collectors.toList());

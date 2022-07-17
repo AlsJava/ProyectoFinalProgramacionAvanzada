@@ -1,12 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.patterns.saga;
 
-import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.Saga;
-import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaPayLoadKey;
-import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaPayload;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SagaFactory {

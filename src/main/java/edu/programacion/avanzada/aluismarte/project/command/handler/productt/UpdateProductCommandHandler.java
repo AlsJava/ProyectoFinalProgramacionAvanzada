@@ -1,9 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.command.handler.productt;
 
 import edu.programacion.avanzada.aluismarte.project.command.product.UpdateProductCommand;
-import edu.programacion.avanzada.aluismarte.project.domain.Address;
 import edu.programacion.avanzada.aluismarte.project.domain.Product;
-import edu.programacion.avanzada.aluismarte.project.model.response.adress.UpdateAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.model.response.product.UpdateProductResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEvent;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;

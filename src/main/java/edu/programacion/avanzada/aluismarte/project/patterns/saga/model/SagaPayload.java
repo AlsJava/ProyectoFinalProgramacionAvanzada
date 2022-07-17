@@ -8,11 +8,10 @@ import java.util.Map;
 
 public class SagaPayload<T> {
 
+    private final Map<SagaPayLoadKey<?>, Object> properties = new HashMap<>();
     @Getter
     @Setter
     private T result;
-
-    private final Map<SagaPayLoadKey<?>, Object> properties = new HashMap<>();
 
     public <M> M getProperty(SagaPayLoadKey<M> sagaPayLoadKey) {
         return sagaPayLoadKey.getType().cast(properties.get(sagaPayLoadKey));
