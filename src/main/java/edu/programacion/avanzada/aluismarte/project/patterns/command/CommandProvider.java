@@ -22,7 +22,7 @@ public class CommandProvider<T extends CommandHandler, C extends Command> implem
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Class<?> clazz = bean.getClass();
         if (clazz.isAnnotationPresent(CommandEvent.class)) {
-            log.info("Command Configuration: {}", bean.getClass());
+            log.info("Configuring command: {}", clazz);
             Class<? extends Command> command = clazz.getAnnotation(CommandEvent.class).command();
             registry.put(command, (CommandHandler) bean);
         }
