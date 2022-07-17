@@ -13,10 +13,11 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SagaFactory {
-    public static Saga<DemoResponse> createDemoSaga(String key, DemoCommand command) {
+    public static Saga<DemoResponse> createDemoSaga(UUID key, DemoCommand command) {
         SagaPayload<DemoResponse> sagaPayload = new SagaPayload<>();
         sagaPayload.addProperty(new SagaPayLoadKey<>("command", DemoCommand.class), command);
         return Saga.<DemoResponse>builder()

@@ -4,9 +4,9 @@ import edu.programacion.avanzada.aluismarte.project.command.DemoCommand;
 import edu.programacion.avanzada.aluismarte.project.model.response.DemoResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEvent;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;
-import edu.programacion.avanzada.aluismarte.project.saga.SagaFactory;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.SagaOrchestrator;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.Saga;
+import edu.programacion.avanzada.aluismarte.project.saga.SagaFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,7 @@ public class DemoCommandHandler implements CommandHandler<DemoResponse, DemoComm
 
     @Override
     public DemoResponse handle(DemoCommand command) {
-        Saga<DemoResponse> saga = SagaFactory.createDemoSaga(UUID.randomUUID().toString(), command);
+        Saga<DemoResponse> saga = SagaFactory.createDemoSaga(UUID.randomUUID(), command);
         return sagaOrchestrator.orchestrate(saga, timeout);
     }
 }

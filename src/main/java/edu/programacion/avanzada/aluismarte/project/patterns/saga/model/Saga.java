@@ -3,6 +3,7 @@ package edu.programacion.avanzada.aluismarte.project.patterns.saga.model;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -11,7 +12,7 @@ import java.util.List;
 public class Saga<T> {
 
     private String name;
-    private String key;
+    private UUID key;
 
     private List<Class<? extends SagaStep<T>>> requiredStep;
 
