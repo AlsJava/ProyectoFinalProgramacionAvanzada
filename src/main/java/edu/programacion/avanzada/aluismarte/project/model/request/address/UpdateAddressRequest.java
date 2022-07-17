@@ -14,11 +14,13 @@ import lombok.*;
 public class UpdateAddressRequest {
 
     private Long id;
+    private String name;
     private String description;
 
     public UpdateAddressCommand toCommand() {
         return UpdateAddressCommand.builder()
                 .id(id)
+                .name(name)
                 .description(description)
                 .build();
     }

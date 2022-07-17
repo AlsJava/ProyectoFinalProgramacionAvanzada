@@ -15,5 +15,6 @@ import lombok.*;
 public class UpdateAddressCommand extends Command<UpdateAddressResponse> {
 
     private Long id;
+    private String name;
     private String description;
 }
