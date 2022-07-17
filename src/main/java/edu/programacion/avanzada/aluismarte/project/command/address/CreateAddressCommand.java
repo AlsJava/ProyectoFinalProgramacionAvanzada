@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.command;
+package edu.programacion.avanzada.aluismarte.project.command.address;
 
 import edu.programacion.avanzada.aluismarte.project.domain.Address;
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.CreateAddressResponse;

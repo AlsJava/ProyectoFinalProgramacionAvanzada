@@ -1,6 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.command.handler;
 
-import edu.programacion.avanzada.aluismarte.project.command.DeleteAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.DeleteAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.handler.address.DeleteAddressCommandHandler;
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.DeleteAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.repositories.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;

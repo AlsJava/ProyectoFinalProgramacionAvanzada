@@ -1,6 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.address;
 
-import edu.programacion.avanzada.aluismarte.project.command.CreateAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.CreateAddressCommand;
 import lombok.*;
 
 /**

@@ -1,6 +1,6 @@
-package edu.programacion.avanzada.aluismarte.project.command.handler;
+package edu.programacion.avanzada.aluismarte.project.command.handler.address;
 
-import edu.programacion.avanzada.aluismarte.project.command.UpdateAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.UpdateAddressCommand;
 import edu.programacion.avanzada.aluismarte.project.domain.Address;
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.UpdateAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEvent;

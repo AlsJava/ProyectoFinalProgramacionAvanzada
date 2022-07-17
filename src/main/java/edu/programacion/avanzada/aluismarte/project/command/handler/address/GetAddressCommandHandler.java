@@ -1,6 +1,6 @@
-package edu.programacion.avanzada.aluismarte.project.command.handler;
+package edu.programacion.avanzada.aluismarte.project.command.handler.address;
 
-import edu.programacion.avanzada.aluismarte.project.command.GetAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.GetAddressCommand;
 import edu.programacion.avanzada.aluismarte.project.model.dto.AddressDTO;
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.GetAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEvent;

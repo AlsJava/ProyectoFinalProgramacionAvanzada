@@ -1,7 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.services;
 
-import edu.programacion.avanzada.aluismarte.project.command.GetAddressCommand;
-import edu.programacion.avanzada.aluismarte.project.command.GetAllAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.GetAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.GetAllAddressCommand;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.CreateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.DeleteAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.address.UpdateAddressRequest;

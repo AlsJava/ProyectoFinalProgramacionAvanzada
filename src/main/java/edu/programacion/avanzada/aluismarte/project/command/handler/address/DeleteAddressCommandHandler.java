@@ -1,6 +1,6 @@
-package edu.programacion.avanzada.aluismarte.project.command.handler;
+package edu.programacion.avanzada.aluismarte.project.command.handler.address;
 
-import edu.programacion.avanzada.aluismarte.project.command.DeleteAddressCommand;
+import edu.programacion.avanzada.aluismarte.project.command.address.DeleteAddressCommand;
 import edu.programacion.avanzada.aluismarte.project.model.response.adress.DeleteAddressResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandEvent;
 import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandHandler;
