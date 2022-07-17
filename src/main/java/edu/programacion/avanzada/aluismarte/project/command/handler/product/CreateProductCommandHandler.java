@@ -1,4 +1,4 @@
-package edu.programacion.avanzada.aluismarte.project.command.handler.productt;
+package edu.programacion.avanzada.aluismarte.project.command.handler.product;
 
 import edu.programacion.avanzada.aluismarte.project.command.product.CreateProductCommand;
 import edu.programacion.avanzada.aluismarte.project.domain.Product;
