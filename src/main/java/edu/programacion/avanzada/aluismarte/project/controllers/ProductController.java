@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * @author aluis on 7/10/2022.
  */
@@ -26,35 +24,26 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<GetProductResponse> get() {
-        return ResponseEntity.ok(GetProductResponse.builder()
-                .products(productService.getAll())
-                .build());
+        return ResponseEntity.ok(productService.getAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<GetProductResponse> get(@PathVariable Long id) {
-        return ResponseEntity.ok(GetProductResponse.builder()
-                .products(List.of(productService.get(id)))
-                .build());
+        return ResponseEntity.ok(productService.get(id));
     }
 
     @PostMapping
     public ResponseEntity<CreateProductResponse> create(@RequestBody CreateProductRequest createProductRequest) {
-        return ResponseEntity.ok(CreateProductResponse.builder()
-                .product(productService.create(createProductRequest))
-                .build());
+        return ResponseEntity.ok(productService.create(createProductRequest));
     }
 
     @PutMapping
     public ResponseEntity<UpdateProductResponse> update(@RequestBody UpdateProductRequest updateProductRequest) {
-        return ResponseEntity.ok(UpdateProductResponse.builder()
-                .product(productService.update(updateProductRequest))
-                .build());
+        return ResponseEntity.ok(productService.update(updateProductRequest));
     }
 
     @DeleteMapping
     public ResponseEntity<DeleteProductResponse> delete(@RequestBody DeleteProductRequest deleteEmployeeRequest) {
-        productService.delete(deleteEmployeeRequest);
-        return ResponseEntity.ok(DeleteProductResponse.builder().build());
+        return ResponseEntity.ok(productService.delete(deleteEmployeeRequest));
     }
 }

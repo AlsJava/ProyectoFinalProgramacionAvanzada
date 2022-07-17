@@ -1,6 +1,8 @@
-package edu.programacion.avanzada.aluismarte.project.model.request.product;
+package edu.programacion.avanzada.aluismarte.project.command.product;
 
-import edu.programacion.avanzada.aluismarte.project.command.product.CreateProductCommand;
+import edu.programacion.avanzada.aluismarte.project.domain.Product;
+import edu.programacion.avanzada.aluismarte.project.model.response.product.CreateProductResponse;
+import edu.programacion.avanzada.aluismarte.project.patterns.command.Command;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -13,15 +15,15 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @Setter
-public class CreateProductRequest {
+public class CreateProductCommand extends Command<CreateProductResponse> {
 
     private String name;
     private String description;
     private long availableQuantity;
     private BigDecimal price;
 
-    public CreateProductCommand toCommand() {
-        return CreateProductCommand.builder()
+    public Product toProduct() {
+        return Product.builder()
                 .name(name)
                 .description(description)
                 .availableQuantity(availableQuantity)

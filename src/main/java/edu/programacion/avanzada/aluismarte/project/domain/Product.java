@@ -1,7 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.ProductDTO;
-import edu.programacion.avanzada.aluismarte.project.model.request.product.UpdateProductRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -45,12 +44,6 @@ public class Product {
                 .availableQuantity(availableQuantity)
                 .price(price)
                 .build();
-    }
-
-    public void applyChanges(UpdateProductRequest updateProductRequest) {
-        description = updateProductRequest.getDescription();
-        availableQuantity = updateProductRequest.getAvailableQuantity();
-        price = updateProductRequest.getPrice();
     }
 
 }

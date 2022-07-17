@@ -1,5 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.product;
 
+import edu.programacion.avanzada.aluismarte.project.command.product.DeleteProductCommand;
 import lombok.*;
 
 /**
@@ -13,4 +14,10 @@ import lombok.*;
 public class DeleteProductRequest {
 
     private Long id;
+
+    public DeleteProductCommand toCommand() {
+        return DeleteProductCommand.builder()
+                .id(id)
+                .build();
+    }
 }
