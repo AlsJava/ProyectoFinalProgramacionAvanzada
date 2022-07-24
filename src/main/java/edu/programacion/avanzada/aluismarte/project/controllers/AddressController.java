@@ -10,11 +10,15 @@ import edu.programacion.avanzada.aluismarte.project.model.response.adress.Update
 import edu.programacion.avanzada.aluismarte.project.services.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * @author aluis on 7/10/2022.
  */
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/addresses")
@@ -35,17 +39,17 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateAddressResponse> create(@RequestBody CreateAddressRequest createAddressRequest) {
+    public ResponseEntity<CreateAddressResponse> create(@Valid @RequestBody CreateAddressRequest createAddressRequest) {
         return ResponseEntity.ok(addressService.create(createAddressRequest));
     }
 
     @PutMapping
-    public ResponseEntity<UpdateAddressResponse> update(@RequestBody UpdateAddressRequest updateAddressRequest) {
+    public ResponseEntity<UpdateAddressResponse> update(@Valid @RequestBody UpdateAddressRequest updateAddressRequest) {
         return ResponseEntity.ok(addressService.update(updateAddressRequest));
     }
 
     @DeleteMapping
-    public ResponseEntity<DeleteAddressResponse> delete(@RequestBody DeleteAddressRequest deleteEmployeeRequest) {
+    public ResponseEntity<DeleteAddressResponse> delete(@Valid @RequestBody DeleteAddressRequest deleteEmployeeRequest) {
         return ResponseEntity.ok(addressService.delete(deleteEmployeeRequest));
     }
 }

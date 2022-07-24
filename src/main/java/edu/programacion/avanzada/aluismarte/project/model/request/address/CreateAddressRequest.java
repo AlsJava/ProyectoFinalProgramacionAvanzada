@@ -4,6 +4,7 @@ import edu.programacion.avanzada.aluismarte.project.command.address.CreateAddres
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * @author aluis on 7/10/2022.
@@ -15,7 +16,8 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class CreateAddressRequest {
 
-    @NotBlank
+    @Size(min = 4, max = 10)
+    @NotBlank(message = "Campo name no puede estar vacío")
     private String name;
     private String description;
 
