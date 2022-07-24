@@ -3,10 +3,8 @@ package edu.programacion.avanzada.aluismarte.project.controllers;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutAddProductRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdatePaymentMethodRequest;
-import edu.programacion.avanzada.aluismarte.project.model.response.checkout.CheckoutAddProductResponse;
-import edu.programacion.avanzada.aluismarte.project.model.response.checkout.CheckoutUpdateAddressResponse;
-import edu.programacion.avanzada.aluismarte.project.model.response.checkout.CheckoutUpdatePaymentMethodResponse;
-import edu.programacion.avanzada.aluismarte.project.model.response.checkout.GetCheckoutResponse;
+import edu.programacion.avanzada.aluismarte.project.model.request.checkout.PayCheckoutRequest;
+import edu.programacion.avanzada.aluismarte.project.model.response.checkout.*;
 import edu.programacion.avanzada.aluismarte.project.services.CheckoutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +56,10 @@ public class CheckoutController {
         return ResponseEntity.ok(CheckoutAddProductResponse.builder()
                 .checkout(checkoutService.addProducts(checkoutAddProductRequest))
                 .build());
+    }
+
+    @PostMapping("/pay")
+    public ResponseEntity<PayCheckoutResponse> pay(@RequestBody PayCheckoutRequest payCheckoutRequest) {
+        return ResponseEntity.ok(checkoutService.pay(payCheckoutRequest));
     }
 }

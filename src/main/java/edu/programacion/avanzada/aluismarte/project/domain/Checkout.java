@@ -1,9 +1,12 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
+import edu.programacion.avanzada.aluismarte.project.model.exceptions.PayCheckoutWithoutProductsException;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +42,23 @@ public class Checkout {
                 .address(address == null ? null : address.toDTO())
                 .paymentMethod(paymentMethod == null ? null : paymentMethod.toDTO())
                 .productsToBuy(productsToBuy == null ? new ArrayList<>() : productsToBuy.stream().map(CheckoutProduct::toDTO).collect(Collectors.toList()))
+                .build();
+    }
+
+    public Order toOrder() {
+        if (productsToBuy.isEmpty()) {
+            throw new PayCheckoutWithoutProductsException(id);
+        }
+        BigDecimal total = new BigDecimal(0);
+        for (CheckoutProduct checkoutProduct : productsToBuy) {
+            total = total.add(checkoutProduct.getProduct().getPrice().multiply(new BigDecimal(checkoutProduct.getQuantity())));
+        }
+        return Order.builder()
+                .address(address)
+                .paymentMethod(paymentMethod)
+                .productsToBuy(productsToBuy)
+                .total(total)
+                .buyDateTime(LocalDateTime.now())
                 .build();
     }
 

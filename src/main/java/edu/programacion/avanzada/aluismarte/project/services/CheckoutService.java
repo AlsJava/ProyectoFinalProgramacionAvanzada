@@ -5,6 +5,9 @@ import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutAddProductRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdatePaymentMethodRequest;
+import edu.programacion.avanzada.aluismarte.project.model.request.checkout.PayCheckoutRequest;
+import edu.programacion.avanzada.aluismarte.project.model.response.checkout.PayCheckoutResponse;
+import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandBus;
 import edu.programacion.avanzada.aluismarte.project.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CheckoutService {
+
+    private final CommandBus commandBus;
 
     private final CheckoutRepository checkoutRepository;
     private final PaymentMethodRepository paymentMethodRepository;
@@ -80,6 +85,10 @@ public class CheckoutService {
         checkout.setProductsToBuy(productsToBuy);
         checkoutRepository.save(checkout);
         return checkout.toDTO();
+    }
+
+    public PayCheckoutResponse pay(PayCheckoutRequest payCheckoutRequest) {
+        return commandBus.sendCommand(payCheckoutRequest.toCommand());
     }
 
     private CheckoutProduct findProductInCheckout(List<CheckoutProduct> productsToBuy, Long productId) {
