@@ -1,6 +1,8 @@
 package edu.programacion.avanzada.aluismarte.project.domain;
 
 import edu.programacion.avanzada.aluismarte.project.model.dto.CheckoutDTO;
+import edu.programacion.avanzada.aluismarte.project.model.exceptions.CheckoutAddressNoAssignedException;
+import edu.programacion.avanzada.aluismarte.project.model.exceptions.CheckoutPaymentMethodNoAssignedException;
 import edu.programacion.avanzada.aluismarte.project.model.exceptions.PayCheckoutWithoutProductsException;
 import lombok.*;
 
@@ -46,6 +48,12 @@ public class Checkout {
     }
 
     public Order toOrder() {
+        if (address == null) {
+            throw new CheckoutAddressNoAssignedException(id);
+        }
+        if (paymentMethod != null) {
+            throw new CheckoutPaymentMethodNoAssignedException(id);
+        }
         if (productsToBuy.isEmpty()) {
             throw new PayCheckoutWithoutProductsException(id);
         }

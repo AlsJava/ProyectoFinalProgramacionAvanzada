@@ -1,10 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.util;
 
 import edu.programacion.avanzada.aluismarte.project.model.APIError;
-import edu.programacion.avanzada.aluismarte.project.model.exceptions.AddressNoFoundException;
-import edu.programacion.avanzada.aluismarte.project.model.exceptions.BadSagaException;
-import edu.programacion.avanzada.aluismarte.project.model.exceptions.CheckoutNoFoundException;
-import edu.programacion.avanzada.aluismarte.project.model.exceptions.PayCheckoutWithoutProductsException;
+import edu.programacion.avanzada.aluismarte.project.model.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +15,16 @@ public class ExceptionAdvisorHandler {
     @ExceptionHandler(BadSagaException.class)
     public ResponseEntity<APIError> handle(BadSagaException ex) {
         return createResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CheckoutAddressNoAssignedException.class)
+    public ResponseEntity<APIError> handle(CheckoutAddressNoAssignedException ex) {
+        return createResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CheckoutPaymentMethodNoAssignedException.class)
+    public ResponseEntity<APIError> handle(CheckoutPaymentMethodNoAssignedException ex) {
+        return createResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AddressNoFoundException.class)
