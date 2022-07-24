@@ -36,5 +36,7 @@ public class PayCheckoutCreateOrderHandler implements SagaStepHandler<PayCheckou
                 .parameterMap(Map.of("command", command))
                 .build());
         sagaPayload.addProperty(PayCheckoutCommand.ORDER, order);
+        // Solicito a mastercard la reserva del balance con mi payment intent
+        sagaPayload.addProperty(PayCheckoutCommand.PAYMENT_INTENT, UUID.randomUUID().toString());
     }
 }
