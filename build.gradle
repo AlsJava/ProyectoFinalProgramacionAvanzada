@@ -1,35 +1,39 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.1'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+	id 'org.springframework.boot' version "$springVersion"
+	id 'io.spring.dependency-management' version "$springDependencyVersion"
+    id 'java'
 }
 
 group = 'edu.programacion.avanzada.aluismarte'
 version = '1.0.0'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-logging")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.integration:spring-integration-core")
-	implementation("org.springframework.data:spring-data-keyvalue:2.7.0") // Simulación de DB Key Value para demostración
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly("com.h2database:h2:2.1.212")
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.integration:spring-integration-core")
+    implementation("org.springframework.data:spring-data-keyvalue:2.7.0")
+    // Simulación de DB Key Value para demostración
+
+    // Boilerplate Code
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    runtimeOnly("com.h2database:h2:$h2Version")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
