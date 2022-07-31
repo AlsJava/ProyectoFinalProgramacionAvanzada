@@ -1,14 +1,13 @@
 package edu.programacion.avanzada.aluismarte.project.services;
 
-import edu.programacion.avanzada.aluismarte.project.domain.Order;
-import edu.programacion.avanzada.aluismarte.project.model.dto.OrderDTO;
-import edu.programacion.avanzada.aluismarte.project.repositories.OrderRepository;
+import edu.programacion.avanzada.aluismarte.project.command.order.GetAllOrderCommand;
+import edu.programacion.avanzada.aluismarte.project.command.order.GetOrderCommand;
+import edu.programacion.avanzada.aluismarte.project.model.response.order.GetOrderResponse;
+import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandBus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * @author aluis on 7/10/2022.
@@ -17,13 +16,18 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final OrderRepository orderRepository;
+    private final CommandBus commandBus;
 
-    public List<OrderDTO> getAll() {
-        return orderRepository.findAll().stream().map(Order::toDTO).collect(Collectors.toList());
+    public GetOrderResponse getAll(Integer pageSize, Integer page) {
+        return commandBus.sendCommand(GetAllOrderCommand.builder()
+                .pageSize(pageSize)
+                .page(page)
+                .build());
     }
 
-    public OrderDTO get(UUID id) {
-        return orderRepository.findById(id).orElseThrow().toDTO();
+    public GetOrderResponse get(UUID id) {
+        return commandBus.sendCommand(GetOrderCommand.builder()
+                .id(id)
+                .build());
     }
 }
