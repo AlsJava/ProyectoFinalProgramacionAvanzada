@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @RequiredArgsConstructor
 @Component
-public class PayCheckoutFinDataHandler implements SagaStepHandler<PayCheckoutResponse> {
+public class PayCheckoutFindDataHandler implements SagaStepHandler<PayCheckoutResponse> {
 
     private final CheckoutRepository checkoutRepository;
 

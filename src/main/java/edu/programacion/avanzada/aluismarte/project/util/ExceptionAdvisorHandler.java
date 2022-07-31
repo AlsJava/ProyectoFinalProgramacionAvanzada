@@ -37,6 +37,11 @@ public class ExceptionAdvisorHandler {
         return createResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(OrderNoFoundException.class)
+    public ResponseEntity<APIError> handle(OrderNoFoundException ex) {
+        return createResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(PayCheckoutWithoutProductsException.class)
     public ResponseEntity<APIError> handle(PayCheckoutWithoutProductsException ex) {
         return createResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);

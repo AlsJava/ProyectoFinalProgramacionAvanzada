@@ -1,23 +1,23 @@
 package edu.programacion.avanzada.aluismarte.project.saga.step;
 
-import edu.programacion.avanzada.aluismarte.project.model.response.checkout.PayCheckoutResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.order.RefundOrderResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaStep;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaStepCompensator;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaStepHandler;
-import edu.programacion.avanzada.aluismarte.project.saga.handler.PayCheckoutFindDataHandler;
+import edu.programacion.avanzada.aluismarte.project.saga.handler.RefundOrderFindDataHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @author aluis on 7/17/2022.
+ * @author aluis on 7/31/2022.
  */
 @RequiredArgsConstructor
 @Component
 @Slf4j
-public class PayCheckoutFindDataStep implements SagaStep<PayCheckoutResponse> {
+public class RefundOrderFindDataStep implements SagaStep<RefundOrderResponse> {
 
-    private final PayCheckoutFindDataHandler payCheckoutFindDataHandler;
+    private final RefundOrderFindDataHandler refundOrderFindDataHandler;
 
     @Override
     public String getName() {
@@ -25,12 +25,12 @@ public class PayCheckoutFindDataStep implements SagaStep<PayCheckoutResponse> {
     }
 
     @Override
-    public SagaStepHandler<PayCheckoutResponse> getHandler() {
-        return payCheckoutFindDataHandler;
+    public SagaStepHandler<RefundOrderResponse> getHandler() {
+        return refundOrderFindDataHandler;
     }
 
     @Override
-    public SagaStepCompensator<PayCheckoutResponse> getCompensator() {
+    public SagaStepCompensator<RefundOrderResponse> getCompensator() {
         return null;
     }
 }

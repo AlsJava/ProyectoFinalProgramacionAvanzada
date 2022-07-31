@@ -2,8 +2,10 @@ package edu.programacion.avanzada.aluismarte.project.saga;
 
 import edu.programacion.avanzada.aluismarte.project.command.DemoCommand;
 import edu.programacion.avanzada.aluismarte.project.command.checkout.PayCheckoutCommand;
+import edu.programacion.avanzada.aluismarte.project.command.order.RefundOrderCommand;
 import edu.programacion.avanzada.aluismarte.project.model.response.DemoResponse;
 import edu.programacion.avanzada.aluismarte.project.model.response.checkout.PayCheckoutResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.order.RefundOrderResponse;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.Saga;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaPayLoadKey;
 import edu.programacion.avanzada.aluismarte.project.patterns.saga.model.SagaPayload;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SagaFactory {
+
     public static Saga<DemoResponse> createDemoSaga(UUID key, DemoCommand command) {
         SagaPayload<DemoResponse> sagaPayload = new SagaPayload<>();
         sagaPayload.addProperty(new SagaPayLoadKey<>("command", DemoCommand.class), command);
@@ -44,6 +47,20 @@ public class SagaFactory {
                         PayCheckoutFindDataStep.class,
                         PayCheckoutCreateOrderStep.class,
                         PayCheckoutSaveOrderStep.class
+                ))
+                .build();
+    }
+
+    public static Saga<RefundOrderResponse> refundOrderSaga(UUID key, RefundOrderCommand command) {
+        SagaPayload<RefundOrderResponse> sagaPayload = new SagaPayload<>();
+        sagaPayload.addProperty(RefundOrderCommand.ID, key);
+        sagaPayload.addProperty(RefundOrderCommand.COMMAND, command);
+        return Saga.<RefundOrderResponse>builder()
+                .name("Refund Order Saga")
+                .key(key)
+                .payload(sagaPayload)
+                .requiredStep(List.of(
+                        RefundOrderFindDataStep.class
                 ))
                 .build();
     }
