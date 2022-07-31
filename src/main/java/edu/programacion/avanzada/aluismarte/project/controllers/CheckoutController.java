@@ -8,6 +8,7 @@ import edu.programacion.avanzada.aluismarte.project.model.response.checkout.*;
 import edu.programacion.avanzada.aluismarte.project.services.CheckoutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -15,6 +16,7 @@ import java.util.UUID;
 /**
  * @author aluis on 7/10/2022.
  */
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/checkout")

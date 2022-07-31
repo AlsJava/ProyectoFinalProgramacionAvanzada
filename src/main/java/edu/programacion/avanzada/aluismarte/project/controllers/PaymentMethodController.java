@@ -10,11 +10,13 @@ import edu.programacion.avanzada.aluismarte.project.model.response.payment.Updat
 import edu.programacion.avanzada.aluismarte.project.services.PaymentMethodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * @author aluis on 7/10/2022.
  */
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/payment/methods")
