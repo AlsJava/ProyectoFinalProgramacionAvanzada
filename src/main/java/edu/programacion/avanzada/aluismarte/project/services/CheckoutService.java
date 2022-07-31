@@ -1,6 +1,7 @@
 package edu.programacion.avanzada.aluismarte.project.services;
 
-import edu.programacion.avanzada.aluismarte.project.command.checkout.*;
+import edu.programacion.avanzada.aluismarte.project.command.checkout.GetAllCheckoutCommand;
+import edu.programacion.avanzada.aluismarte.project.command.checkout.GetCheckoutCommand;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutAddProductRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdateAddressRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.checkout.CheckoutUpdatePaymentMethodRequest;
@@ -30,25 +31,15 @@ public class CheckoutService {
     }
 
     public CheckoutUpdatePaymentMethodResponse updatePaymentMethod(CheckoutUpdatePaymentMethodRequest checkoutUpdatePaymentMethodRequest) {
-        return commandBus.sendCommand(UpdatePaymentMethodCheckoutCommand.builder()
-                .id(checkoutUpdatePaymentMethodRequest.getId())
-                .paymentMethod(checkoutUpdatePaymentMethodRequest.getPaymentMethod())
-                .build());
+        return commandBus.sendCommand(checkoutUpdatePaymentMethodRequest.toCommand());
     }
 
     public CheckoutUpdateAddressResponse updateAddress(CheckoutUpdateAddressRequest checkoutUpdateAddressRequest) {
-        return commandBus.sendCommand(UpdateAddressCheckoutCommand.builder()
-                .id(checkoutUpdateAddressRequest.getId())
-                .address(checkoutUpdateAddressRequest.getAddress())
-                .build());
+        return commandBus.sendCommand(checkoutUpdateAddressRequest.toCommand());
     }
 
     public CheckoutAddProductResponse addProducts(CheckoutAddProductRequest checkoutAddProductRequest) {
-        return commandBus.sendCommand(AddProductCheckoutCommand.builder()
-                .id(checkoutAddProductRequest.getId())
-                .product(checkoutAddProductRequest.getProduct())
-                .quantity(checkoutAddProductRequest.getQuantity())
-                .build());
+        return commandBus.sendCommand(checkoutAddProductRequest.toCommand());
     }
 
     public PayCheckoutResponse pay(PayCheckoutRequest payCheckoutRequest) {
