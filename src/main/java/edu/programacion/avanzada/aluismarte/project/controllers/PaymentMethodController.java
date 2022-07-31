@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * @author aluis on 7/10/2022.
  */
@@ -27,35 +25,26 @@ public class PaymentMethodController {
     @GetMapping
     public ResponseEntity<GetPaymentMethodResponse> get(@RequestParam(required = false, defaultValue = "10") Integer pageSize,
                                                         @RequestParam(required = false, defaultValue = "0") Integer page) {
-        return ResponseEntity.ok(GetPaymentMethodResponse.builder()
-                .paymentMethods(paymentMethodService.getAll())
-                .build());
+        return ResponseEntity.ok(paymentMethodService.getAll(pageSize, page));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<GetPaymentMethodResponse> get(@PathVariable Long id) {
-        return ResponseEntity.ok(GetPaymentMethodResponse.builder()
-                .paymentMethods(List.of(paymentMethodService.get(id)))
-                .build());
+        return ResponseEntity.ok(paymentMethodService.get(id));
     }
 
     @PostMapping
     public ResponseEntity<CreatePaymentMethodResponse> create(@RequestBody CreatePaymentMethodRequest createPaymentMethodRequest) {
-        return ResponseEntity.ok(CreatePaymentMethodResponse.builder()
-                .paymentMethod(paymentMethodService.create(createPaymentMethodRequest))
-                .build());
+        return ResponseEntity.ok(paymentMethodService.create(createPaymentMethodRequest));
     }
 
     @PutMapping
     public ResponseEntity<UpdatePaymentMethodResponse> update(@RequestBody UpdatePaymentMethodRequest updatePaymentMethodRequest) {
-        return ResponseEntity.ok(UpdatePaymentMethodResponse.builder()
-                .paymentMethod(paymentMethodService.update(updatePaymentMethodRequest))
-                .build());
+        return ResponseEntity.ok(paymentMethodService.update(updatePaymentMethodRequest));
     }
 
     @DeleteMapping
     public ResponseEntity<DeletePaymentMethodResponse> delete(@RequestBody DeletePaymentMethodRequest deleteEmployeeRequest) {
-        paymentMethodService.delete(deleteEmployeeRequest);
-        return ResponseEntity.ok(DeletePaymentMethodResponse.builder().build());
+        return ResponseEntity.ok(paymentMethodService.delete(deleteEmployeeRequest));
     }
 }

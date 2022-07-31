@@ -1,6 +1,6 @@
 package edu.programacion.avanzada.aluismarte.project.model.request.payment;
 
-import edu.programacion.avanzada.aluismarte.project.domain.PaymentMethod;
+import edu.programacion.avanzada.aluismarte.project.command.payment.CreatePaymentMethodCommand;
 import lombok.*;
 
 /**
@@ -16,8 +16,8 @@ public class CreatePaymentMethodRequest {
     private String name;
     private String description;
 
-    public PaymentMethod toPaymentMethod() {
-        return PaymentMethod.builder()
+    public CreatePaymentMethodCommand toCommand() {
+        return CreatePaymentMethodCommand.builder()
                 .name(name)
                 .description(description)
                 .build();

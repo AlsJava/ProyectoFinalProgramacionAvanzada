@@ -1,16 +1,17 @@
 package edu.programacion.avanzada.aluismarte.project.services;
 
-import edu.programacion.avanzada.aluismarte.project.domain.PaymentMethod;
-import edu.programacion.avanzada.aluismarte.project.model.dto.PaymentMethodDTO;
+import edu.programacion.avanzada.aluismarte.project.command.payment.GetAllPaymentMethodCommand;
+import edu.programacion.avanzada.aluismarte.project.command.payment.GetPaymentMethodCommand;
 import edu.programacion.avanzada.aluismarte.project.model.request.payment.CreatePaymentMethodRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.payment.DeletePaymentMethodRequest;
 import edu.programacion.avanzada.aluismarte.project.model.request.payment.UpdatePaymentMethodRequest;
-import edu.programacion.avanzada.aluismarte.project.repositories.PaymentMethodRepository;
+import edu.programacion.avanzada.aluismarte.project.model.response.payment.CreatePaymentMethodResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.payment.DeletePaymentMethodResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.payment.GetPaymentMethodResponse;
+import edu.programacion.avanzada.aluismarte.project.model.response.payment.UpdatePaymentMethodResponse;
+import edu.programacion.avanzada.aluismarte.project.patterns.command.CommandBus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author aluis on 7/10/2022.
@@ -19,29 +20,30 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PaymentMethodService {
 
-    private final PaymentMethodRepository paymentMethodRepository;
+    private final CommandBus commandBus;
 
-    public List<PaymentMethodDTO> getAll() {
-        return paymentMethodRepository.findAll().stream().map(PaymentMethod::toDTO).collect(Collectors.toList());
+    public GetPaymentMethodResponse getAll(Integer pageSize, Integer page) {
+        return commandBus.sendCommand(GetAllPaymentMethodCommand.builder()
+                .pageSize(pageSize)
+                .page(page)
+                .build());
     }
 
-    public PaymentMethodDTO get(Long id) {
-        return paymentMethodRepository.findById(id).orElseThrow().toDTO();
+    public GetPaymentMethodResponse get(Long id) {
+        return commandBus.sendCommand(GetPaymentMethodCommand.builder()
+                .id(id)
+                .build());
     }
 
-    public PaymentMethodDTO create(CreatePaymentMethodRequest createPaymentMethodRequest) {
-        PaymentMethod paymentMethod = paymentMethodRepository.save(createPaymentMethodRequest.toPaymentMethod());
-        return paymentMethod.toDTO();
+    public CreatePaymentMethodResponse create(CreatePaymentMethodRequest createPaymentMethodRequest) {
+        return commandBus.sendCommand(createPaymentMethodRequest.toCommand());
     }
 
-    public PaymentMethodDTO update(UpdatePaymentMethodRequest updatePaymentMethodRequest) {
-        PaymentMethod paymentMethod = paymentMethodRepository.findById(updatePaymentMethodRequest.getId()).orElseThrow();
-        paymentMethod.applyChanges(updatePaymentMethodRequest);
-        paymentMethodRepository.save(paymentMethod);
-        return paymentMethod.toDTO();
+    public UpdatePaymentMethodResponse update(UpdatePaymentMethodRequest updatePaymentMethodRequest) {
+        return commandBus.sendCommand(updatePaymentMethodRequest.toCommand());
     }
 
-    public void delete(DeletePaymentMethodRequest deletePaymentMethodRequest) {
-        paymentMethodRepository.deleteById(deletePaymentMethodRequest.getId());
+    public DeletePaymentMethodResponse delete(DeletePaymentMethodRequest deletePaymentMethodRequest) {
+        return commandBus.sendCommand(deletePaymentMethodRequest.toCommand());
     }
 }
