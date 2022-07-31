@@ -23,4 +23,5 @@ public class OrderDTO {
     private List<CheckoutProductDTO> productsToBuy;
     private BigDecimal total;
     private LocalDateTime buyDateTime;
+    private Boolean refund;
 }

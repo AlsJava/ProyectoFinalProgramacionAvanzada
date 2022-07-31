@@ -60,7 +60,8 @@ public class SagaFactory {
                 .key(key)
                 .payload(sagaPayload)
                 .requiredStep(List.of(
-                        RefundOrderFindDataStep.class
+                        RefundOrderFindDataStep.class,
+                        RefundOrderStep.class
                 ))
                 .build();
     }

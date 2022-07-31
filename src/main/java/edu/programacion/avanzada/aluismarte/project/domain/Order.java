@@ -41,6 +41,10 @@ public class Order {
     @Column
     private LocalDateTime buyDateTime;
 
+    @Builder.Default
+    @Column
+    private Boolean refund = false;
+
     public OrderDTO toDTO() {
         return OrderDTO.builder()
                 .id(id)
@@ -49,6 +53,7 @@ public class Order {
                 .productsToBuy(productsToBuy == null ? new ArrayList<>() : productsToBuy.stream().map(CheckoutProduct::toDTO).collect(Collectors.toList()))
                 .total(total)
                 .buyDateTime(buyDateTime)
+                .refund(refund)
                 .build();
     }
 }
