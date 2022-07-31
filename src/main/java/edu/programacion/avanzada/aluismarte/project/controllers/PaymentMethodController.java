@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author aluis on 7/10/2022.
  */
@@ -36,17 +38,17 @@ public class PaymentMethodController {
     }
 
     @PostMapping
-    public ResponseEntity<CreatePaymentMethodResponse> create(@RequestBody CreatePaymentMethodRequest createPaymentMethodRequest) {
+    public ResponseEntity<CreatePaymentMethodResponse> create(@Valid @RequestBody CreatePaymentMethodRequest createPaymentMethodRequest) {
         return ResponseEntity.ok(paymentMethodService.create(createPaymentMethodRequest));
     }
 
     @PutMapping
-    public ResponseEntity<UpdatePaymentMethodResponse> update(@RequestBody UpdatePaymentMethodRequest updatePaymentMethodRequest) {
+    public ResponseEntity<UpdatePaymentMethodResponse> update(@Valid @RequestBody UpdatePaymentMethodRequest updatePaymentMethodRequest) {
         return ResponseEntity.ok(paymentMethodService.update(updatePaymentMethodRequest));
     }
 
     @DeleteMapping
-    public ResponseEntity<DeletePaymentMethodResponse> delete(@RequestBody DeletePaymentMethodRequest deleteEmployeeRequest) {
+    public ResponseEntity<DeletePaymentMethodResponse> delete(@Valid @RequestBody DeletePaymentMethodRequest deleteEmployeeRequest) {
         return ResponseEntity.ok(paymentMethodService.delete(deleteEmployeeRequest));
     }
 }

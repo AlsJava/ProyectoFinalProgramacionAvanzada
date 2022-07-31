@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author aluis on 7/10/2022.
  */
@@ -36,17 +38,17 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateProductResponse> create(@RequestBody CreateProductRequest createProductRequest) {
+    public ResponseEntity<CreateProductResponse> create(@Valid @RequestBody CreateProductRequest createProductRequest) {
         return ResponseEntity.ok(productService.create(createProductRequest));
     }
 
     @PutMapping
-    public ResponseEntity<UpdateProductResponse> update(@RequestBody UpdateProductRequest updateProductRequest) {
+    public ResponseEntity<UpdateProductResponse> update(@Valid @RequestBody UpdateProductRequest updateProductRequest) {
         return ResponseEntity.ok(productService.update(updateProductRequest));
     }
 
     @DeleteMapping
-    public ResponseEntity<DeleteProductResponse> delete(@RequestBody DeleteProductRequest deleteEmployeeRequest) {
+    public ResponseEntity<DeleteProductResponse> delete(@Valid @RequestBody DeleteProductRequest deleteEmployeeRequest) {
         return ResponseEntity.ok(productService.delete(deleteEmployeeRequest));
     }
 }
