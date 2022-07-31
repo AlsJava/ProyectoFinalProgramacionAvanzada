@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,38 +23,29 @@ public class CheckoutController {
     private final CheckoutService checkoutService;
 
     @GetMapping
-    public ResponseEntity<GetCheckoutResponse> get() {
-        return ResponseEntity.ok(GetCheckoutResponse.builder()
-                .checkouts(checkoutService.getAll())
-                .build());
+    public ResponseEntity<GetCheckoutResponse> get(@RequestParam(required = false, defaultValue = "10") Integer pageSize,
+                                                   @RequestParam(required = false, defaultValue = "0") Integer page) {
+        return ResponseEntity.ok(checkoutService.getAll(pageSize, page));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<GetCheckoutResponse> get(@PathVariable UUID id) {
-        return ResponseEntity.ok(GetCheckoutResponse.builder()
-                .checkouts(List.of(checkoutService.get(id)))
-                .build());
+        return ResponseEntity.ok(checkoutService.get(id));
     }
 
     @PostMapping("/update/address")
     public ResponseEntity<CheckoutUpdateAddressResponse> updateAddress(@RequestBody CheckoutUpdateAddressRequest checkoutUpdateAddressRequest) {
-        return ResponseEntity.ok(CheckoutUpdateAddressResponse.builder()
-                .checkout(checkoutService.updateAddress(checkoutUpdateAddressRequest))
-                .build());
+        return ResponseEntity.ok(checkoutService.updateAddress(checkoutUpdateAddressRequest));
     }
 
     @PostMapping("/update/payment/method")
     public ResponseEntity<CheckoutUpdatePaymentMethodResponse> updatePaymentMethod(@RequestBody CheckoutUpdatePaymentMethodRequest checkoutUpdatePaymentMethodRequest) {
-        return ResponseEntity.ok(CheckoutUpdatePaymentMethodResponse.builder()
-                .checkout(checkoutService.updatePaymentMethod(checkoutUpdatePaymentMethodRequest))
-                .build());
+        return ResponseEntity.ok(checkoutService.updatePaymentMethod(checkoutUpdatePaymentMethodRequest));
     }
 
     @PostMapping("/add/product")
     public ResponseEntity<CheckoutAddProductResponse> addProduct(@RequestBody CheckoutAddProductRequest checkoutAddProductRequest) {
-        return ResponseEntity.ok(CheckoutAddProductResponse.builder()
-                .checkout(checkoutService.addProducts(checkoutAddProductRequest))
-                .build());
+        return ResponseEntity.ok(checkoutService.addProducts(checkoutAddProductRequest));
     }
 
     @PostMapping("/pay")
