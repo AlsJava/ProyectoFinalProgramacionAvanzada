@@ -8,10 +8,14 @@ import lombok.*;
  * @author aluis on 7/10/2022.
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @ToString
 public class GetAllProductCommand extends Command<GetProductResponse> {
+
+    private int pageSize;
+    private int page;
 
 }

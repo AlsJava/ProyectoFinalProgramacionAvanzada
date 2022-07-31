@@ -22,8 +22,11 @@ public class ProductService {
 
     private final CommandBus commandBus;
 
-    public GetProductResponse getAll() {
-        return commandBus.sendCommand(GetAllProductCommand.builder().build());
+    public GetProductResponse getAll(Integer pageSize, Integer page) {
+        return commandBus.sendCommand(GetAllProductCommand.builder()
+                .pageSize(pageSize)
+                .page(page)
+                .build());
     }
 
     public GetProductResponse get(Long id) {

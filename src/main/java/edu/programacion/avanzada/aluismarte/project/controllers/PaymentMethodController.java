@@ -25,7 +25,8 @@ public class PaymentMethodController {
     private final PaymentMethodService paymentMethodService;
 
     @GetMapping
-    public ResponseEntity<GetPaymentMethodResponse> get() {
+    public ResponseEntity<GetPaymentMethodResponse> get(@RequestParam(required = false, defaultValue = "10") Integer pageSize,
+                                                        @RequestParam(required = false, defaultValue = "0") Integer page) {
         return ResponseEntity.ok(GetPaymentMethodResponse.builder()
                 .paymentMethods(paymentMethodService.getAll())
                 .build());

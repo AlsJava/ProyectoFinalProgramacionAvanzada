@@ -23,8 +23,9 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public ResponseEntity<GetProductResponse> get() {
-        return ResponseEntity.ok(productService.getAll());
+    public ResponseEntity<GetProductResponse> get(@RequestParam(required = false, defaultValue = "10") Integer pageSize,
+                                                  @RequestParam(required = false, defaultValue = "0") Integer page) {
+        return ResponseEntity.ok(productService.getAll(pageSize, page));
     }
 
     @GetMapping("/{id}")
