@@ -3,6 +3,10 @@ package edu.programacion.avanzada.aluismarte.project.model.request.product;
 import edu.programacion.avanzada.aluismarte.project.command.product.CreateProductCommand;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -15,9 +19,14 @@ import java.math.BigDecimal;
 @Setter
 public class CreateProductRequest {
 
+    @Size(min = 4, max = 10)
+    @NotBlank(message = "Campo name no puede estar vacío")
     private String name;
     private String description;
-    private long availableQuantity;
+    @NotNull
+    @PositiveOrZero
+    private Long availableQuantity;
+    @NotNull
     private BigDecimal price;
 
     public CreateProductCommand toCommand() {

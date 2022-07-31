@@ -3,6 +3,7 @@ package edu.programacion.avanzada.aluismarte.project.model.request.checkout;
 import edu.programacion.avanzada.aluismarte.project.command.checkout.PayCheckoutCommand;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Setter
 public class PayCheckoutRequest {
 
+    @NotNull
     private UUID id;
 
     public PayCheckoutCommand toCommand() {

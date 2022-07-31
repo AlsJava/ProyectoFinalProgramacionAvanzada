@@ -3,6 +3,8 @@ package edu.programacion.avanzada.aluismarte.project.model.request.checkout;
 import edu.programacion.avanzada.aluismarte.project.command.checkout.UpdateAddressCheckoutCommand;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.UUID;
 
 /**
@@ -15,8 +17,11 @@ import java.util.UUID;
 @Setter
 public class CheckoutUpdateAddressRequest {
 
+    @NotNull
     private UUID id;
 
+    @NotNull
+    @Positive
     private Long address;
 
     public UpdateAddressCheckoutCommand toCommand() {

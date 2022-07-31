@@ -3,6 +3,9 @@ package edu.programacion.avanzada.aluismarte.project.model.request.product;
 import edu.programacion.avanzada.aluismarte.project.command.product.UpdateProductCommand;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 /**
@@ -15,9 +18,15 @@ import java.math.BigDecimal;
 @Setter
 public class UpdateProductRequest {
 
+    @NotNull
+    @Positive
     private Long id;
     private String description;
-    private long availableQuantity;
+    @NotNull
+    @PositiveOrZero
+    private Long availableQuantity;
+
+    @NotNull
     private BigDecimal price;
 
     public UpdateProductCommand toCommand() {
