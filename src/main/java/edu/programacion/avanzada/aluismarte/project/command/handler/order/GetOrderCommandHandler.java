@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CommandEvent(command = GetOrderCommand.class)
 @Slf4j
-public class GetCheckoutCommandHandler implements CommandHandler<GetOrderResponse, GetOrderCommand> {
+public class GetOrderCommandHandler implements CommandHandler<GetOrderResponse, GetOrderCommand> {
 
     private final OrderRepository orderRepository;
 

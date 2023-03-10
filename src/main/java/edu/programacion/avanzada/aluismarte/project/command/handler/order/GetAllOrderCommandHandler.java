@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @CommandEvent(command = GetAllOrderCommand.class)
 @Slf4j
-public class GetAllCheckoutCommandHandler implements CommandHandler<GetOrderResponse, GetAllOrderCommand> {
+public class GetAllOrderCommandHandler implements CommandHandler<GetOrderResponse, GetAllOrderCommand> {
 
     private final OrderRepository orderRepository;
 
